@@ -1,7 +1,12 @@
 import { handleGithubLogin, getUserSession } from "@/lib/action";
+import { redirect } from "next/navigation";
 
 const LoginPage = async () => {
   const session = await getUserSession();
+
+  if (session?.user) {
+    redirect("/dashboard");
+  }
 
   return (
     <div>
